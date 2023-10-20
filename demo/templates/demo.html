@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>this is demo html</h1>
+
+<div>
+    {% for demomodel in demomodels %}
+        <p>{{demomodel.name}}-{{demomodel.title}}</p><span><a href="{% url 'demo:updatedemo' demomodel.id %}">edit</a></span>
+    {% endfor %}
+</div><hr>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">submit</button>
+</form>
+{% endblock %}

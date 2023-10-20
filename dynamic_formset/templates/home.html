@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>dynamic formset django</h1>
+
+<div id="contact-forms">
+    {% include 'form.html' %}
+</div>
+
+<div class="my-4">
+    <button type="button" class="btn btn-success me-2" hx-get="{% url 'dynamic_formset:create-contact' %}" hx-target="#contact-forms" hx-swap="beforeend">+ Add contact</button>
+    <button type="button" class="btn btn-primary" id="submit-all">submit all</button>
+</div>  
+
+<ul id="contact-list">
+    {% for contact in contacts %}
+        {% include 'contact.html' %}
+    {% endfor %}
+</ul>
+
+{% endblock %}
