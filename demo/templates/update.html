@@ -4,9 +4,9 @@
 <form method="post">
     {% csrf_token %}
     <label>Name:</label>
-    <input class="form-control" type="text" placeholder="{{demomodels.name}}"><br>
+    <input class="form-control" type="text" placeholder="{{demomodels.name}}" name="name"><br>
     <label>title:</label>
-    <input class="form-control" type="text" placeholder="{{demomodels.title}}">
+    <input class="form-control" type="text" placeholder="{{demomodels.title}}" name="title">
     <button class="btn btn-primary" type="submit">submit</button>
 </form>
 {% endblock %}

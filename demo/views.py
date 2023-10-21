@@ -22,12 +22,14 @@ def demohome(request):
 
 def updatedemo(request,id):
     demomodels = DemoModel.objects.get(id = id)
-    form = DemoModelForm(request.POST or None)
-    # if form.is_valid():
-    #     name = form.cleaned_data['name']
-    #     title = form.cleaned_data['title']
-    #     DemoModel(name = name, title = title).save()
-    # else:
-    #     form = DemoModelForm()
-    context = {'demomodels':demomodels,'form':form}
+    if request.method == 'POST':
+        form = DemoModelForm(request.POST or None)
+        if form.is_valid():
+            demomodels.name = form.cleaned_data['name']
+            demomodels.title = form.cleaned_data['title']
+            # print(f"------------{name}-----------{title}")
+            # demomodels(name = name, title = title).save()
+            demomodels.save()
+            return redirect('demo:demohome')
+    context = {'demomodels':demomodels}
     return render(request,'update.html',context)
